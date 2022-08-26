@@ -4,11 +4,16 @@ const http = require("http")
 const server = http.createServer(app)
 const io = require("socket.io")(server)
 const PORT = 3000
+require('dotenv').config()
+const env = process.env
 
 const mongoose = require("mongoose")
 
 const Msg = require("./models/messages")
-const mongoDB = require("./libs/mongo_info")
+    // const mongoDB = require("./libs/mongo_info")
+
+const mongoDB = env.URI
+console.log(mongoDB)
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html")
